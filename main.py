@@ -1,4 +1,4 @@
-from PIL import Image
+from PIL import Image 
 import PySimpleGUI as sg
 
 type = ""
@@ -22,12 +22,13 @@ while True:
         break
     if event == "cvt" and type != "":
         img = Image.open(window["img"].get())
+        print(img.filename)
         if type == "png":
-            img.save("ImagemConvertida.png", "png")
+            img.save(f"{img.filename}-ImagemConvertida.png", "png")
         elif type == "jpeg":
-            img = Image.open(window["img"].get()).convert("RGB")
-            img.save("ImagemConvertida.jpeg", "jpeg")
+            img = Image.open(window["img"].get())
+            img.convert("RGB").save(f"{img.filename}-ImagemConvertida.jpeg", "jpeg")
         else:
-            img.save("ImagemConvertida.webp", "webp")
+            img.save(f"{img.filename}-ImagemConvertida.webp", "webp")
     
 window.close()
